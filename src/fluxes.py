@@ -80,37 +80,6 @@ def DensityDrivenHorizontalFlux(Box1, Box2,lammbda,i):
         return q
 
     
-
-def Compensating(Fluxes, Box, i, fwb): 
-    
-    """
-    Determines if there is compensating flow and where the compensating flow is from    
-    
-    """
-    
-    
-        
-    for Box2 in dict(reversed(list(Boxes.items()))):
-        if Box1.Name in Boxes[Box2].HorConnection:
-            if Box1.Rho[i] > Boxes[Box2].Rho[i]:
-                
-                Q_out = np.sum(Fluxes[i,Box1.Number,:]) + (fwb[i, Box1.Number] > 0)*abs(fwb[i, Box1.Number])
-            
-                Q_in = np.sum(Fluxes[i,:,Box1.Number]) + (fwb[i, Box1.Number] < 0)*abs(fwb[i, Box1.Number])
-                
-                Q_comp = Q_out - Q_in
-            
-                
-                Fluxes[i,Boxes[Box2].Number,Box1.Number] = Q_comp 
-    
-    return Fluxes
-    
-
-
-
-
-
-
 def VerticalMixing(Box1, Box2, i):
     
     """

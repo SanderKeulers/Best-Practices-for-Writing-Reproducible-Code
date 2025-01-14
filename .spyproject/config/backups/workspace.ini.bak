@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['classes.py']
+recent_files = ['classes.py', 'constants.py', 'fluxes.py', 'forcings.py', 'main.py', 'Plots.py']
 
 [main]
 version = 0.2.0

@@ -30,7 +30,6 @@ for i in range(0,2):
 
         
         ax.set_ylim(33.5,41)
-        # lns4 = ax.plot(t,Boxes['WMedI'].Salinity,linestyle='--',color='tab:green',label='$S_{WMedI}$')
         ax.set_xticklabels([])
 
         lns = lns1+lns2
@@ -61,7 +60,7 @@ for i in range(0,2):
         ax2.grid(axis='y')
         ax3.grid(axis='y',)
         
-        print(Boxes['WMed'].Salinity[-1])
+
         
         
     if i ==0:  
@@ -73,8 +72,6 @@ for i in range(0,2):
         lns3 = ax.plot(t,Boxes['EMed'].Salinity,color='orange',label='$S_{EMed}$')
         
         ax.set_ylim(33.5,41)
-        # lns4 = ax.plot(t,Boxes['WMedI'].Salinity,linestyle='--',color='tab:green',label='$S_{WMedI}$')
-        # lns5 = ax.plot(t,Boxes['EMedI'].Salinity,linestyle='--',color='tab:orange',label='$s_{EMedI}$')
         ax.set_xticklabels([])
 
         lns = lns1+lns2+lns3
@@ -102,8 +99,8 @@ for i in range(0,2):
         ax.grid(axis='y')
         ax2.grid(axis='y')
         ax3.grid(axis='y',)
-        print(Boxes['WMed'].Salinity[-1])
+
         
     plt.tight_layout(h_pad=1.12,w_pad=1.12)
-    
-#plt.savefig('./../../../PhD/Thesis/Figures/8-1-2025/1 box versus 2 boxes.png')
+    plt.close() 
+#plt.savefig('./../results/1 box versus 2 boxes.png')

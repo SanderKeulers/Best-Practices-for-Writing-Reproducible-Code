@@ -48,9 +48,14 @@ class AtlanticSurface:
         Name of the Box
     Number  :  int
         Number of the box
-    Salinity  : NumPy array with size of modelrun representing Box salinity
-    Temp  :  NumPy array with size of modelrun representing Box temperature
-        
+    Salinity  : NumPy array with size of modelrun representing Box salinity [-]
+    Temp  :  NumPy array with size of modelrun representing Box temperature [deg C]
+    Rho  :  Density calculated given the box temperature and salinity through the linear equation of state [kg/m3]
+    HorConnection  :  List of boxes connected horizontally
+    VerConnection  : List of boxes connected vertically
+    Area  :  int, surface area of box [m2]
+    dT  :  float, change of temperature at certain time step      
+    dS  :  float, change of salinity at certain time step          
     
     
     """    
@@ -71,6 +76,27 @@ class AtlanticSurface:
         self.dS        = 0
 
 class WMedSurface:
+    
+    """
+    Box representing WMed Surface 
+    
+    Attributes
+    ----------
+    Name  :  str
+        Name of the Box
+    Number  :  int
+        Number of the box
+    Salinity  : NumPy array with size of modelrun representing Box salinity [-]
+    Temp  :  NumPy array with size of modelrun representing Box temperature [deg C]
+    Rho  :  Density calculated given the box temperature and salinity through the linear equation of state [kg/m3]
+    HorConnection  :  List of boxes connected horizontally
+    VerConnection  : List of boxes connected vertically
+    Area  :  int, surface area of box [m2]
+    dT  :  float, change of temperature at certain time step      
+    dS  :  float, change of salinity at certain time step          
+    
+    
+    """    
         
     def __init__(self, S0, T0):
         self.Name       = 'WMed'
@@ -90,6 +116,28 @@ class WMedSurface:
         self.dS        = 0
   
 class WMedIntermediate:
+    
+    
+    """
+    Box representing WMed Intermediate 
+    
+    Attributes
+    ----------
+    Name  :  str
+        Name of the Box
+    Number  :  int
+        Number of the box
+    Salinity  : NumPy array with size of modelrun representing Box salinity [-]
+    Temp  :  NumPy array with size of modelrun representing Box temperature [deg C]
+    Rho  :  Density calculated given the box temperature and salinity through the linear equation of state [kg/m3]
+    HorConnection  :  List of boxes connected horizontally
+    VerConnection  : List of boxes connected vertically
+    Area  :  int, surface area of box [m2]
+    dT  :  float, change of temperature at certain time step      
+    dS  :  float, change of salinity at certain time step          
+    
+    
+    """    
     
     def __init__(self, S0, T0):
         self.Name       = 'WMedI'
@@ -111,6 +159,28 @@ class WMedIntermediate:
        
 class EMedSurface:
     
+    
+    """
+    Box representing EMed Surface 
+    
+    Attributes
+    ----------
+    Name  :  str
+        Name of the Box
+    Number  :  int
+        Number of the box
+    Salinity  : NumPy array with size of modelrun representing Box salinity [-]
+    Temp  :  NumPy array with size of modelrun representing Box temperature [deg C]
+    Rho  :  Density calculated given the box temperature and salinity through the linear equation of state [kg/m3]
+    HorConnection  :  List of boxes connected horizontally
+    VerConnection  : List of boxes connected vertically
+    Area  :  int, surface area of box [m2]
+    dT  :  float, change of temperature at certain time step      
+    dS  :  float, change of salinity at certain time step          
+    
+    
+    """    
+    
     def __init__(self, S0, T0):
         self.Name       = 'EMed'
 
@@ -130,6 +200,28 @@ class EMedSurface:
         self.dS        = 0
         
 class EMedIntermediate:
+    
+    
+    """
+    Box representing EMed Intermediate 
+    
+    Attributes
+    ----------
+    Name  :  str
+        Name of the Box
+    Number  :  int
+        Number of the box
+    Salinity  : NumPy array with size of modelrun representing Box salinity [-]
+    Temp  :  NumPy array with size of modelrun representing Box temperature [deg C]
+    Rho  :  Density calculated given the box temperature and salinity through the linear equation of state [kg/m3]
+    HorConnection  :  List of boxes connected horizontally
+    VerConnection  : List of boxes connected vertically
+    Area  :  int, surface area of box [m2]
+    dT  :  float, change of temperature at certain time step      
+    dS  :  float, change of salinity at certain time step          
+    
+    
+    """    
     
     def __init__(self, S0, T0):
         self.Name       = 'EMedI'

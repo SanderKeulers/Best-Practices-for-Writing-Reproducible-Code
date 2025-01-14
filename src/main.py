@@ -7,7 +7,7 @@ Created on Mon Nov 18 08:28:51 2024
 
        
     
-def Main(a):
+def Main(config):
     
     import warnings
     warnings.filterwarnings("ignore")
@@ -21,7 +21,6 @@ def Main(a):
     from fluxes import (DensityDrivenHorizontalFlux,
                         Convection,
                         VerticalMixing, 
-                        Compensating,
                         dTdt, dSdt
                         )
 
@@ -35,7 +34,7 @@ def Main(a):
     import numpy as np
     
 
-    if a == 1:
+    if config == 1:
     
         dt = 1 # 1 year
         t = np.zeros((int(modelrun/dt),1))
@@ -111,7 +110,7 @@ def Main(a):
     
         return t, Boxes, Fluxes, FreshWaterBudget, AirTemperature
     
-    if a == 0 :
+    if config == 0 :
         
         dt = 1 # 1 year
         t = np.zeros((int(modelrun/dt),1))
