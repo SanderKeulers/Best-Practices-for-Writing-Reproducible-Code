@@ -6,44 +6,58 @@ Created on Mon Nov 18 08:28:51 2024
 """
 
        
+import warnings
+warnings.filterwarnings("ignore")
+
+from classes import (AtlanticSurface, 
+                    WMedSurface, WMedIntermediate, 
+                    EMedSurface, EMedIntermediate,
+                    CalculateDensity
+                    )
+
+from fluxes import (DensityDrivenHorizontalFlux,
+                    Convection,
+                    VerticalMixing, 
+                    dTdt, dSdt
+                    )
+
+from forcings import (Evapor,
+                      VaryingAtlantic,
+                      AirTemp
+                      ) 
+
+from constants import (heatc, modelrun, lammbda, lammbda2, dt) 
+
+import numpy as np
+    
+
+
     
 def Main(config):
-    
-    import warnings
-    warnings.filterwarnings("ignore")
-
-    from classes import (AtlanticSurface, 
-                        WMedSurface, WMedIntermediate, 
-                        EMedSurface, EMedIntermediate,
-                        CalculateDensity
-                        )
-
-    from fluxes import (DensityDrivenHorizontalFlux,
-                        Convection,
-                        VerticalMixing, 
-                        dTdt, dSdt
-                        )
-
-    from forcings import (Evapor,
-                          VaryingAtlantic,
-                          AirTemp
-                          ) 
-
-    from constants import (heatc, modelrun, lammbda, lammbda2) 
-
-    import numpy as np
+    """
     
 
+    Parameters
+    ----------
+    config : Either 1 or 2; defines set-up of model.
+
+    Returns
+    -------
+    t : NumPy array of int, determines time 
+    Boxes : Dictionary of defined boxes, including their properties.
+    Fluxes : NumPy array of fluxes between boxes .
+    FreshWaterBudget : NumPy array of freshwater budget over box
+    AirTemperature : NumPy array of air temperature over box 
+
+    """
+    
+    t = np.zeros((int(modelrun/dt),1))
+    
     if config == 1:
-    
-        dt = 1 # 1 year
-        t = np.zeros((int(modelrun/dt),1))
-        
-    
+  
         Boxes = {
             'Atlantic' : AtlanticSurface(34, 11),
-            'WMed' : WMedSurface(34, 11),
-         
+            'WMed' : WMedSurface(34, 11)        
             }
     
         Boxes['WMed'].Area   = 2*10**12
@@ -57,7 +71,7 @@ def Main(config):
             t[i+1] = t[i] + dt             
                     
             Boxes['Atlantic'].Salinity[i] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
-            Boxes['Atlantic'].Temp[i] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i) # keep Atlantic constant or not 
+            Boxes['Atlantic'].Temp[i] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i)         # keep Atlantic constant or not 
                     
             for Box in Boxes:
                 Boxes[Box].Rho[i] = CalculateDensity(Boxes[Box].Salinity[i], Boxes[Box].Temp[i])
@@ -78,17 +92,14 @@ def Main(config):
                         Fluxes[i,Boxes[Box1].Number,Boxes[Box2].Number] += Convection(Boxes[Box1], Boxes[Box2], i)
                         Mixing[i,Boxes[Box1].Number,Boxes[Box2].Number] += VerticalMixing(Boxes[Box1],Boxes[Box2],i)
             
-            #%% Compensating fluxes
-            
-            # Fluxes[i,Boxes['WMed'].Number,Boxes['EMed'].Number] = ((FreshWaterBudget[i,Boxes['EMed'].Number]>0)*FreshWaterBudget[i,Boxes['EMed'].Number]
-            #                                                       + np.sum(Fluxes[i,Boxes['EMed'].Number,:]))             
-            
+            #%% Compensating fluxes           
+           
             Fluxes[i,Boxes['Atlantic'].Number,Boxes['WMed'].Number] = ((FreshWaterBudget[i,Boxes['WMed'].Number]>0)*FreshWaterBudget[i,Boxes['WMed'].Number]
                                                                   + np.sum(Fluxes[i,Boxes['WMed'].Number,:]) 
                                                                   - np.sum(Fluxes[i, :,Boxes['WMed'].Number]))  
-            
-           
+                       
             #%% dTdt and dSdt 
+            
             for Box1 in Boxes: 
                 for Box2 in Boxes:                 
                     Boxes[Box1].dT += dTdt(Boxes[Box2], Boxes[Box1], Fluxes[i,Boxes[Box1].Number,Boxes[Box2].Number] + Mixing[i,Boxes[Box1].Number,Boxes[Box2].Number],i)*dt                          
@@ -111,11 +122,7 @@ def Main(config):
         return t, Boxes, Fluxes, FreshWaterBudget, AirTemperature
     
     if config == 0 :
-        
-        dt = 1 # 1 year
-        t = np.zeros((int(modelrun/dt),1))
-        
-    
+           
         Boxes = {
             'Atlantic' : AtlanticSurface(34, 11),
             'WMed' : WMedSurface(34, 11),
@@ -186,4 +193,3 @@ def Main(config):
     
         return t, Boxes, Fluxes, FreshWaterBudget, AirTemperature
     
- 

@@ -25,23 +25,16 @@ def Convection(Box1, Box2,i):
     
 
     """
-    if Box1.Name in Box2.VerConnection: # Or the other way around, should not matter
+    q = 0 # Set q to zero so function always returns something, either 0 or other value of q
     
+    if Box1.Name in Box2.VerConnection: # Or the other way around, should not matter    
     
         if Box1.Rho[i] >= Box2.Rho[i]:
         
             q =  kappa_conv*(Box1.Rho[i]-Box2.Rho[i]) 
-
             
-        else:
-            q = 0
-        
-        return q
-    else:
-        q = 0
-        return q
-
-    
+    return q
+   
   
    
 def DensityDrivenHorizontalFlux(Box1, Box2,lammbda,i):

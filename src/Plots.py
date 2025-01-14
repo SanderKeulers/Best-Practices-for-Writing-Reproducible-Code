@@ -8,9 +8,6 @@ Created on Fri Dec 13 11:46:10 2024
 import matplotlib.pyplot as plt
 import numpy as np
 from main import Main 
-import matplotlib.cm as cm
-import matplotlib.patches as mpatches
-
 
 fig, axes = plt.subplots(2,2)
 fig.set_figheight(10)

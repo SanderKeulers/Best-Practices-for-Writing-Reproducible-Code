@@ -9,10 +9,6 @@ Created on Thu Nov 28 10:59:13 2024
 import numpy as np
 from constants import modelrun
 
-
-
-    
-    
 def Evapor(i,Box):
     """
     
@@ -67,7 +63,10 @@ def AirTemp(i, Box):
 
 def VaryingAtlantic(i):
     
-    
+    """"
+    Functions that changes the water properties of the Atlantic; 
+    For now, no changes are imposed
+    """
     
     return 0 
 

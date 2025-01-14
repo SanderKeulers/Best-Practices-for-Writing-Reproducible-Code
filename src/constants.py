@@ -8,7 +8,8 @@ Created on Fri Nov 29 09:26:29 2024
 import numpy as np
 
 
-modelrun = 800
+modelrun = 800                                   # modelrun 
+dt       = 1
 
 lammbda  = 3.9*10**(5) *365.25*24*3600           # Strait efficiency Gibraltar & WMed
 lammbda2 = 3.9*10**(5) *365.25*24*3600           # Strait efficiency WMed & EMed
