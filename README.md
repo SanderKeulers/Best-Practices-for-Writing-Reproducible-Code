@@ -1,11 +1,16 @@
-This is the readme file for my project
 
-This project is created in and tested for Python 3.12. Any version of Python > 3 will likely work. 
+# Readme file for project in Best-Practices-for-Writing-Reproducible-Code workshop
 
-The required packages for this project are mentioned in the requirements.in file. 
+## What does this project do
+Dependent on the chosen configuration, parameters and initial values, this project calculates the evolution of the water properties of any semi-enclosed sea. 
+For this project, a box-model setup of the Mediterranean Sea is chosen, which is semi-enclosed and only connected to the Atlantic Ocean through the Strait of Gibraltar. 
+The current parameters and initial values realistically present the current-day properties of the Mediterranean Sea. Given any initial values, the evolution of temperature and salinity of the Mediterranean Sea is modelled. 
 
-The project does currently not require any input data.
+## How do you run the project
+First, make sure that you have Python==>3.0 installed and all requirements mentioned in requirements.in are installed in the environment. 
+Calling main.py will run and calling plots.py will generate the plot in the ./results/ directory. 
+The user may change initial temperature or salinity values, change the imposed forcing over the box, change the parameters. 
 
-The main.py function is the main function, which can be called. You can either call it directly or run plots.py to create the generated plot in the ./results/ directory. 
+### Changes to project
+Any change can be made to the m
 
-Compensating fluxes need to defined manually dependent on model setup. Volume of each box needs to be conserved; i.e. Q_in = sum(Q_out) 
