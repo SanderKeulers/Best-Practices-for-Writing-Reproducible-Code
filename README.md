@@ -10,9 +10,10 @@ The current parameters and initial values realistically present the current-day 
 
 
 ## How do you run the project
-First, make sure that you have Python==>3.0 installed and all requirements mentioned in requirements.in are installed in the environment. 
-Calling main.py will run and calling plots.py will generate the plot in the ./results/ directory. 
-The user may change initial temperature or salinity values, change the imposed forcing over the box, change the parameters. 
+* Make sure that you have Python==>3.0 installed 
+* Clone this repository
+* You can either call main.py to run the model or plots.py to create a figure in ./results/ directory. Make sure you run from the /src/ directory. 
+* The user may change initial temperature or salinity values, change the imposed forcing over the box, change the parameters. For this, the user must make changes in the main, constants, classes or forcing file. 
 
 ### Changes to project setup 
 The current project is setup for 1-box or 2-box setup. The user may choose to add any arbritrary number of additional boxes. For this, the user should add a new class in the classes.py file for each new box that the user wants to add. The requirements of the boxes are clear from the docstrings of other, already defined classes. Next, in the main.py file, the user should create the class in the Boxes dictionary. 
