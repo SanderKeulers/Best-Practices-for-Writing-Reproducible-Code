@@ -26,7 +26,7 @@ from forcings import (Evapor,
                       AirTemp
                       ) 
 
-from constants import (heatc, modelrun, lammbda, lammbda2, dt) 
+from constants import heatc, modelrun, lammbda, lammbda2, dt
 
 import numpy as np
     
@@ -57,7 +57,7 @@ def Main(config):
             'WMed' : WMedSurface(34, 11)        
             }
     
-        Boxes['WMed'].Area   = 2*10**12
+        Boxes['WMed'].Area   = 2*10**12 # For 1 box setup; change area so that new area is equal to sum of 2 single boxes in 2-box setup
         Fluxes               = np.zeros((modelrun,len(Boxes),len(Boxes)))
         Mixing               = np.zeros((modelrun,len(Boxes),len(Boxes)))
         FreshWaterBudget     = np.zeros((modelrun,len(Boxes)))
@@ -158,7 +158,7 @@ def Main(config):
                         Mixing[i,Boxes[Box1].Number,Boxes[Box2].Number] += VerticalMixing(Boxes[Box1],Boxes[Box2],i)
             
             #%% Compensating fluxes
-            
+                      
             Fluxes[i,Boxes['WMed'].Number,Boxes['EMed'].Number] = ((FreshWaterBudget[i,Boxes['EMed'].Number]>0)*FreshWaterBudget[i,Boxes['EMed'].Number]
                                                                   + np.sum(Fluxes[i,Boxes['EMed'].Number,:]))             
             

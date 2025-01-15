@@ -19,19 +19,21 @@ def Convection(Box1, Box2,i):
     Box1 : Upper box
     
     Box2 : Lower box
+    
+    Kappa_conv  :  Convection parameter
 
     Returns
     -------
-    
+    Value of convection, always positive.  
 
     """
     q = 0 # Set q to zero so function always returns something, either 0 or other value of q
-    
-    if Box1.Name in Box2.VerConnection: # Or the other way around, should not matter    
-    
-        if Box1.Rho[i] >= Box2.Rho[i]:
+    if Box1.Level == 0: 
+        if Box1.Name in Box2.VerConnection: # Or the other way around, should not matter    
         
-            q =  kappa_conv*(Box1.Rho[i]-Box2.Rho[i]) 
+            if Box1.Rho[i] > Box2.Rho[i]:
+            
+                q =  kappa_conv*(Box1.Rho[i]-Box2.Rho[i]) 
             
     return q
    
@@ -44,9 +46,22 @@ def DensityDrivenHorizontalFlux(Box1, Box2,lammbda,i):
     Parameters
     ----------
 
+    Box1 : Box1, can be any arbritrary box out of Boxes dictionary
+    
+    Box2 : Box2, can be any arbritrary box out of Boxes dictionary
+    
+    lammbda  :  Strait efficiency constant, defined the strength of the flux through a sea strait 
+    
+    
     Returns
     -------
-    None.
+    
+    Checks if the boxes are connected, defined in the box Class. 
+    Next, checks which box its density is larger, this is where the density driven
+    flux is from. If the flow is between Atlantic and WMed, then a square-root
+    relation is imposed because of the characteristics of the Strait of Gibraltar. 
+    Else, a linear relation between the density and the strength of the flow is assumed. 
+    The function returns the flow between the 2 boxes, which is always defined positive. 
 
     """
     if Box1.Name in Box2.HorConnection:
@@ -74,10 +89,25 @@ def DensityDrivenHorizontalFlux(Box1, Box2,lammbda,i):
 
     
 def VerticalMixing(Box1, Box2, i):
-    
     """
-    Box1 == Upper box
-    Box2 == Lower box
+    
+
+    Parameters
+    ----------
+
+    Box1 : Box1, can be any arbritrary box out of Boxes dictionary
+    
+    Box2 : Box2, can be any arbritrary box out of Boxes dictionary
+    
+    Returns
+    -------
+    
+    Checks if the boxes are vertically connected, defined in the box Class. 
+    Next, checks which box its density is larger. Mixing is either set to standard 
+    background value, kappa_mixing, or to larger value dependent on density differences. 
+    Returns value of mixing, mixing is always positive. 
+    
+
     """
     if Box1.Name in Box2.VerConnection: 
 

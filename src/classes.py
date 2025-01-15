@@ -63,11 +63,11 @@ class AtlanticSurface:
 
     def __init__(self, S0, T0):
         self.Name       = 'Atlantic'
-
+        self.Level      = 0             # 0 = Surface, 1 = Intermediate, 2 = Deep 
         self.Number     = 0
         self.Salinity   = np.ones((modelrun,1)) 
         self.Temp       = np.ones((modelrun,1))  
-        Rho             = CalculateDensity(S0,T0)
+        self.Rho             = CalculateDensity(S0,T0)
         self.Rho        = np.ones((modelrun,1)) 
         self.HorConnection = ['WMed']
         self.VerConnection = [] 
@@ -101,6 +101,7 @@ class WMedSurface:
     def __init__(self, S0, T0):
         self.Name       = 'WMed'
         self.Number     = 1
+        self.Level      = 0             # 0 = Surface, 1 = Intermediate, 2 = Deep 
         self.Area       = 1*10**12 #0.8475*10**12
         self.Depth      = 500 
         self.Volume     = self.Area * self.Depth 
@@ -140,8 +141,9 @@ class WMedIntermediate:
     """    
     
     def __init__(self, S0, T0):
-        self.Name       = 'WMedI'
-        self.Number     = 3
+        self.Name       = 'WMedI' 
+        self.Level      = 1             # 0 = Surface, 1 = Intermediate, 2 = Deep 
+        self.Number     = 3             # Integer number in fluxes array
         self.Area       = 0.8475*10**12 ##0.8475*10**12
         self.Depth      = 1000 
         self.Volume     = self.Area * self.Depth 
@@ -183,7 +185,7 @@ class EMedSurface:
     
     def __init__(self, S0, T0):
         self.Name       = 'EMed'
-
+        self.Level      = 0             # 0 = Surface, 1 = Intermediate, 2 = Deep 
         self.Number     = 2
         self.Area       = 1*10**12# 1.6963*10**12
         self.Depth      = 500 
@@ -225,7 +227,7 @@ class EMedIntermediate:
     
     def __init__(self, S0, T0):
         self.Name       = 'EMedI'
-
+        self.Level      = 1             # 0 = Surface, 1 = Intermediate, 2 = Deep 
         self.Number     = 4
         self.Area       = 1.6963*10**12##1.6963*10**12
         self.Depth      = 1000 

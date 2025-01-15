@@ -19,7 +19,8 @@ def Evapor(i,Box):
 
     Returns
     -------
-    evap : Evaporation imposed on box
+    evap : Evaporation imposed on box; positive is net evaporation (E-(P+R) > 0). 
+        Negative is net influx of fresh water (E-(P+R) < 0)
 
     """
 
