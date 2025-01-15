@@ -63,15 +63,15 @@ def Main(config):
         FreshWaterBudget     = np.zeros((modelrun,len(Boxes)))
         AirTemperature       = np.zeros((modelrun,len(Boxes)))
         
-        for i in range(0,len(t)-1):
+        for i in range(0,len(t)-1): # Iterate over predefined time
             
             t[i+1] = t[i] + dt             
                     
             Boxes['Atlantic'].Salinity[i] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
             Boxes['Atlantic'].Temp[i] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i)         # keep Atlantic constant or not 
                     
-            for Box in Boxes:
-                Boxes[Box].Rho[i] = CalculateDensity(Boxes[Box].Salinity[i], Boxes[Box].Temp[i])
+            for Box in Boxes: # Loop over all boxes
+                Boxes[Box].Rho[i] = CalculateDensity(Boxes[Box].Salinity[i], Boxes[Box].Temp[i]) # Calculate density
                 FreshWaterBudget[i,Boxes[Box].Number] = Evapor(i,Boxes[Box].Name)*Boxes[Box].Area 
                 AirTemperature[i, Boxes[Box].Number] = AirTemp(i, Boxes[Box].Name)     
              
@@ -131,7 +131,7 @@ def Main(config):
         FreshWaterBudget     = np.zeros((modelrun,len(Boxes)))
         AirTemperature       = np.zeros((modelrun,len(Boxes)))
         
-        for i in range(0,len(t)-1):
+        for i in range(0,len(t)-1): # Iterate over predefined time 
             
             t[i+1] = t[i] + dt             
                     
