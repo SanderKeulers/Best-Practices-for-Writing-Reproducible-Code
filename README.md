@@ -24,3 +24,6 @@ $`\sum_{i=1}^{n} Q_{i,in} = \sum Q_{i,out} `$
 
 and therefore, compensating fluxes to ensure conservation of volume should be added manually dependent on the chosen setup. 
 
+### Important final notes
+This setup is currently only configured for a realistic configuration, that is, the Atlantic Ocean will always have a lower density than the Mediterranean Sea and there is always a net evaporation. This is important because the compensating fluxes are calculated manually and any changes in forcing or properties of the Atlantic Ocean will lead to unphysical results. 
+
