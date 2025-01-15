@@ -41,6 +41,7 @@ class AtlanticSurface:
 
     """
     Box representing Atlantic Surface 
+    Requires S0 and T0 which are the initial values of salinity and temperature
     
     Attributes
     ----------
@@ -79,6 +80,7 @@ class WMedSurface:
     
     """
     Box representing WMed Surface 
+    Requires S0 and T0 which are the initial values of salinity and temperature
     
     Attributes
     ----------
@@ -121,6 +123,7 @@ class WMedIntermediate:
     
     """
     Box representing WMed Intermediate 
+    Requires S0 and T0 which are the initial values of salinity and temperature
     
     Attributes
     ----------
@@ -164,6 +167,7 @@ class EMedSurface:
     
     """
     Box representing EMed Surface 
+    Requires S0 and T0 which are the initial values of salinity and temperature
     
     Attributes
     ----------
@@ -205,7 +209,8 @@ class EMedIntermediate:
     
     
     """
-    Box representing EMed Intermediate 
+    Box representing EMed Intermediate
+    Requires S0 and T0 which are the initial values of salinity and temperature
     
     Attributes
     ----------

@@ -52,8 +52,9 @@ def Main(config):
     
     if config == 1:
   
+        # Here, define boxes and provide initial conditions (S0 and T0)
         Boxes = {
-            'Atlantic' : AtlanticSurface(34, 11),
+            'Atlantic' : AtlanticSurface(34, 11), 
             'WMed' : WMedSurface(34, 11)        
             }
     
