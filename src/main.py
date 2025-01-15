@@ -30,16 +30,13 @@ from constants import (heatc, modelrun, lammbda, lammbda2, dt)
 
 import numpy as np
     
-
-
-    
 def Main(config):
     """
     
 
     Parameters
     ----------
-    config : Either 1 or 2; defines set-up of model.
+    config : int, either 1 or 2; defines set-up of model.
 
     Returns
     -------
@@ -115,8 +112,7 @@ def Main(config):
                     Boxes[Box1].Temp[i+1]          = Boxes[Box1].Temp[i] + Boxes[Box1].dT
                     Boxes[Box1].Salinity[i+1]      = Boxes[Box1].Salinity[i] + Boxes[Box1].dS
                     Boxes[Box1].dT = 0
-                    Boxes[Box1].dS = 0
-                
+                    Boxes[Box1].dS = 0     
              
     
         return t, Boxes, Fluxes, FreshWaterBudget, AirTemperature
@@ -188,8 +184,6 @@ def Main(config):
                     Boxes[Box1].Salinity[i+1]      = Boxes[Box1].Salinity[i] + Boxes[Box1].dS
                     Boxes[Box1].dT = 0
                     Boxes[Box1].dS = 0
-                
-             
-    
+                    
         return t, Boxes, Fluxes, FreshWaterBudget, AirTemperature
     
