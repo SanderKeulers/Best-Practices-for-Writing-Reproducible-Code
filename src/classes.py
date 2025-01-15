@@ -66,10 +66,12 @@ class AtlanticSurface:
         self.Name       = 'Atlantic'
         self.Level      = 0             # 0 = Surface, 1 = Intermediate, 2 = Deep 
         self.Number     = 0
-        self.Salinity   = np.ones((modelrun,1)) 
-        self.Temp       = np.ones((modelrun,1))  
-        self.Rho             = CalculateDensity(S0,T0)
-        self.Rho        = np.ones((modelrun,1)) 
+        self.Salinity   = np.zeros((modelrun,1)) 
+        self.Temp       = np.zeros((modelrun,1))  
+        self.Rho        = np.zeros((modelrun,1)) 
+        self.Salinity[0] = S0
+        self.Temp[0]     = T0
+        self.Rho[0]     = CalculateDensity(S0,T0) 
         self.HorConnection = ['WMed']
         self.VerConnection = [] 
         self.Area      = 0 # Set area to 0 because fresh water budget over Atlantic is not important

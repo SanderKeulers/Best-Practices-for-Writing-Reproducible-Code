@@ -58,8 +58,6 @@ for i in range(0,2):
         ax3.grid(axis='y',)
         
 
-        
-        
     if i ==0:  
         t, Boxes, Fluxes, FreshWaterBudget, AirTemperature = Main(i) 
         ax.set_title('Salinity of Atlantic, WMed and EMed (2 box setup)', weight='bold')
@@ -99,5 +97,5 @@ for i in range(0,2):
 
         
     plt.tight_layout(h_pad=1.12,w_pad=1.12)
-    plt.close() 
-#plt.savefig('./../results/1 box versus 2 boxes.png')
+
+plt.savefig('./../results/1 box versus 2 boxes.png')

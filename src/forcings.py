@@ -25,10 +25,14 @@ def Evapor(i,Box):
     """
 
     if Box == 'WMed':
-        evap = 0.6
+        b = 2*np.pi/(modelrun*4) 
+        evap = 1.0 * np.sin(b*i)
+
         
     elif Box == 'EMed':
-        evap = 0.6
+        b = 2*np.pi/(modelrun*4) 
+        evap = 1.0 * np.sin(b*i)
+
 
     else:
         evap = 0

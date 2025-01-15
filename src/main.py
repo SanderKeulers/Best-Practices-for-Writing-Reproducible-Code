@@ -68,14 +68,16 @@ def Main(config):
             
             t[i+1] = t[i] + dt             
                     
-            Boxes['Atlantic'].Salinity[i] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
-            Boxes['Atlantic'].Temp[i] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i)         # keep Atlantic constant or not 
                     
             for Box in Boxes: # Loop over all boxes
                 Boxes[Box].Rho[i] = CalculateDensity(Boxes[Box].Salinity[i], Boxes[Box].Temp[i]) # Calculate density
                 FreshWaterBudget[i,Boxes[Box].Number] = Evapor(i,Boxes[Box].Name)*Boxes[Box].Area 
-                AirTemperature[i, Boxes[Box].Number] = AirTemp(i, Boxes[Box].Name)     
-             
+                AirTemperature[i, Boxes[Box].Number] = AirTemp(i, Boxes[Box].Name)  
+                
+            Boxes['Atlantic'].Salinity[i+1] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
+            Boxes['Atlantic'].Temp[i+1] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i) # keep Atlantic constant or not 
+            Boxes['Atlantic'].Rho[i+1] = CalculateDensity(Boxes['Atlantic'].Salinity[i], Boxes['Atlantic'].Temp[i])
+                 
             #%% Density driven horizontal fluxes and convection     
             
             for Box1 in Boxes:
@@ -134,15 +136,20 @@ def Main(config):
         
         for i in range(0,len(t)-1): # Iterate over predefined time 
             
-            t[i+1] = t[i] + dt             
+            t[i+1] = t[i] + dt         
+            
+            
                     
-            Boxes['Atlantic'].Salinity[i] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
-            Boxes['Atlantic'].Temp[i] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i) # keep Atlantic constant or not 
-                    
-            for Box in Boxes:
+                   
+            for Box in Boxes: # Calculate current state
                 Boxes[Box].Rho[i] = CalculateDensity(Boxes[Box].Salinity[i], Boxes[Box].Temp[i])
                 FreshWaterBudget[i,Boxes[Box].Number] = Evapor(i,Boxes[Box].Name)*Boxes[Box].Area 
-                AirTemperature[i, Boxes[Box].Number] = AirTemp(i, Boxes[Box].Name)     
+                AirTemperature[i, Boxes[Box].Number] = AirTemp(i, Boxes[Box].Name)    
+                
+            Boxes['Atlantic'].Salinity[i+1] = Boxes['Atlantic'].Salinity[i] + VaryingAtlantic(i) # keep Atlantic constant or not
+            Boxes['Atlantic'].Temp[i+1] = Boxes['Atlantic'].Temp[i] + VaryingAtlantic(i) # keep Atlantic constant or not 
+            Boxes['Atlantic'].Rho[i+1] = CalculateDensity(Boxes['Atlantic'].Salinity[i], Boxes['Atlantic'].Temp[i])
+              
              
             #%% Density driven horizontal fluxes and convection     
             
