@@ -21,7 +21,7 @@ Any additional box should likely obey conservation of volume:
 
 $`\frac{dV_i}{dt} = 0`$ and therefore: 
 
-$`\sum_{i=1}^{n} Q_{i,in} = \sum Q_{i,out} `$
+$`\sum_{i=1}^{n} Q_{i,in} = \sum_{i=1}^{n} Q_{i,out} `$
 
 and therefore, compensating fluxes to ensure conservation of volume should be added manually dependent on the chosen setup. 
 
